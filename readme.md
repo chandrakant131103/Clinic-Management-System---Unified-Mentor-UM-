@@ -1,5 +1,10 @@
+https://gregarious-naiad-8abe52.netlify.app/
+
+Link hosted of netlify
+
+
+
 # CLINIC MANAGEMENT SYSTEM
-## Complete Documentation & Setup Guide
 
 ================================================================================
 
@@ -319,7 +324,10 @@ For detailed setup instructions, refer to the "Installation & Setup" section abo
 ================================================================================
 
 
-LINK 
+LINK :   https://gregarious-naiad-8abe52.netlify.app/
+
+Link hosted of netlify
+
 
 
 Images
