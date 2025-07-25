@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clinic Management System</title>
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Clinic Management System</h1>
+            <p>Streamlining healthcare operations with modern technology</p>
+        </div>
+
+        <div class="main-content">
+            <div id="alertBox" class="alert"></div>
+
+            <!-- Authentication Section -->
+            <div id="authSection" class="auth-section">
+                <div class="auth-card">
+                    <h3> Doctor Login</h3>
+                    <form id="doctorLoginForm">
+                        <div class="form-group">
+                            <label for="doctorEmail">Email</label>
+                            <input type="email" id="doctorEmail" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="doctorPassword">Password</label>
+                            <input type="password" id="doctorPassword" required>
+                        </div>
+                        <button type="submit" class="btn">Login as Doctor</button>
+                    </form>
+                    <div class="register-section">
+                        <a href="#" onclick="showRegisterForm('doctor')">Register as Doctor</a>
+                    </div>
+                </div>
+
+                <div class="auth-card">
+                    <h3> Receptionist Login</h3>
+                    <form id="receptionistLoginForm">
+                        <div class="form-group">
+                            <label for="receptionistEmail">Email</label>
+                            <input type="email" id="receptionistEmail" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="receptionistPassword">Password</label>
+                            <input type="password" id="receptionistPassword" required>
+                        </div>
+                        <button type="submit" class="btn">Login as Receptionist</button>
+                    </form>
+                    <div class="register-section">
+                        <a href="#" onclick="showRegisterForm('receptionist')">Register as Receptionist</a>
+                    </div>
+                </div>
+
+                <!-- Registration Form -->
+                <div id="registerSection" class="auth-card" style="display: none;">
+                    <h3 id="registerTitle">Register</h3>
+                    <form id="registerForm">
+                        <div class="form-group">
+                            <label for="registerEmail">Email</label>
+                            <input type="email" id="registerEmail" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="registerPassword">Password</label>
+                            <input type="password" id="registerPassword" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="registerName">Full Name</label>
+                            <input type="text" id="registerName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="registerUserType">User Type</label>
+                            <select id="registerUserType" required>
+                                <option value="doctor">Doctor</option>
+                                <option value="receptionist">Receptionist</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn">Register</button>
+                        <div class="register-section">
+                            <a href="#" onclick="showLogin()">Back to Login</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Doctor Dashboard -->
+            <div id="doctorDashboard" class="dashboard">
+                <div class="dashboard-header">
+                    <h2 class="dashboard-title"> Doctor Dashboard</h2>
+                    <button class="btn logout-btn" onclick="logout()">Logout</button>
+                </div>
+                
+                <div class="dashboard-content">
+                    <div class="card">
+                        <h3> Patient Queue</h3>
+                        <div id="patientQueue" class="patient-list">
+                            <p>Loading patients...</p>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <h3>Patient Details & Prescription</h3>
+                        <div id="selectedPatientDetails">
+                            <p>Select a patient to view details</p>
+                        </div>
+                        <div id="prescriptionSection"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Receptionist Dashboard -->
+            <div id="receptionistDashboard" class="dashboard">
+                <div class="dashboard-header">
+                    <h2 class="dashboard-title"> Receptionist Dashboard</h2>
+                    <button class="btn logout-btn" onclick="logout()">Logout</button>
+                </div>
+                
+                <div class="dashboard-content">
+                    <div class="card">
+                        <h3> Token Generation</h3>
+                        <div class="token-display" id="currentToken">001</div>
+                        <form id="patientRegistrationForm">
+                            <div class="form-group">
+                                <label for="patientName">Patient Name</label>
+                                <input type="text" id="patientName" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="patientAge">Age</label>
+                                <input type="number" id="patientAge" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="patientPhone">Phone</label>
+                                <input type="tel" id="patientPhone" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="patientComplaint">Chief Complaint</label>
+                                <input type="text" id="patientComplaint" required>
+                            </div>
+                            <button type="submit" class="btn">Register Patient</button>
+                        </form>
+                    </div>
+                    
+                    <div class="card">
+                        <h3> Billing Management</h3>
+                        <div id="billingSection">
+                            <p>Loading bills...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Firebase SDK -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/9.22.0/firebase-app-compat.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/9.22.0/firebase-auth-compat.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/9.22.0/firebase-firestore-compat.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/9.22.0/firebase-storage-compat.min.js"></script>
+    <!-- jsPDF for PDF generation -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+    <script src="script.js"></script>
+</body>
+</html>
