@@ -3,6 +3,15 @@ https://gregarious-naiad-8abe52.netlify.app/
 Link hosted of netlify
 
 
+COMPANY: Unified Mentor Pvt. Ltd
+NAME: Chandrakant Barik
+
+UNID INTERN ID:  UMID01062540399
+
+DOMAIN: Frontend Development Intern
+
+DURATION: 05/06/2025 to 05/08/2025
+
 
 # CLINIC MANAGEMENT SYSTEM
 
